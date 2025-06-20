@@ -1,11 +1,11 @@
 import React from 'react';
+import Body from "./components/Body.jsx";
+
 
 const App = () => {
-    return (
-        <div className="font-bold text-xl text-center mb-5">
-            Hello Netflix
-        </div>
-    );
+return (
+    <div><Body/></div>
+)
 };
 
 export default App;
