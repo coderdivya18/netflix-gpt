@@ -18,33 +18,32 @@
     - Go to your Vite project directory [cd path/to/your/project]
     - Build your project [npm run build]
     - Initialize Firebase in the project [firebase init]
-    - During prompts: 
-          - Select: Hosting, 
-          - Choose: Use existing project → Pick your Firebase ,
-          - Public directory: dist, 
-          - Configure as SPA: Yes
-          - Overwrite index.html: No
+    - During prompts:
+      - Select: Hosting,
+      - Choose: Use existing project → Pick your Firebase ,
+      - Public directory: dist,
+      - Configure as SPA: Yes
+      - Overwrite index.html: No
     - Deploy your app [firebase deploy]
     - (Optional) Preview Locally: Run Firebase local server [firebase serve] Visit http://localhost:5000
     - Redeploy After Future Changes: After changes: [npm run build][ firebase deploy]
-
-
-
-
-
+- Create signup in
+- Implemented signIn in firebase
+- create store for user using redux
 
 # Features
+
 - Login/signup Page
     - Signup/signIn form
     - Redirect to Browse Page
 - Browse Page (comes after authentication)
     - Header
-    - Main Movie 
-      - Background Trailer
-      - Title & description
-      - Buttons
-      - Movie Suggestion by category, genres
-        - Movies List * n (horizontally scrollable)
-- Netflix GPT 
-   - Search Bar
-   - Movie suggestions
+    - Main Movie
+        - Background Trailer
+        - Title & description
+        - Buttons
+        - Movie Suggestion by category, genres
+            - Movies List * n (horizontally scrollable)
+- Netflix GPT
+    - Search Bar
+    - Movie suggestions
