@@ -8,17 +8,13 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice.js";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
-
-  const navigate = useNavigate();
   const dispatch = useDispatch();
-
   // Using useRef Hook
   const nameRef = useRef(null);
   const emailRef = useRef(null);
@@ -60,12 +56,10 @@ const Login = () => {
                   photoURL,
                 }),
               );
-              navigate("/browse");
             })
             .catch((error) => {
               setErrorMessage(error.message);
             });
-          console.log(user);
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -77,8 +71,6 @@ const Login = () => {
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           const user = userCredential.user;
-          console.log("Signed in:", user);
-          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -86,7 +78,6 @@ const Login = () => {
           setErrorMessage(errorCode + " - " + errorMessage);
         });
     }
-    console.log("Form is valid");
   };
 
   const toggleSignInForm = () => {

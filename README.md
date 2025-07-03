@@ -19,17 +19,19 @@
     - Build your project [npm run build]
     - Initialize Firebase in the project [firebase init]
     - During prompts:
-      - Select: Hosting,
-      - Choose: Use existing project → Pick your Firebase ,
-      - Public directory: dist,
-      - Configure as SPA: Yes
-      - Overwrite index.html: No
+        - Select: Hosting,
+        - Choose: Use existing project → Pick your Firebase ,
+        - Public directory: dist,
+        - Configure as SPA: Yes
+        - Overwrite index.html: No
     - Deploy your app [firebase deploy]
     - (Optional) Preview Locally: Run Firebase local server [firebase serve] Visit http://localhost:5000
     - Redeploy After Future Changes: After changes: [npm run build][ firebase deploy]
 - Create signup in
 - Implemented signIn in firebase
 - create store for user using redux
+- Implemented signOut, update profile from firebase
+- fetching Movies from TMDP api
 
 # Features
 
