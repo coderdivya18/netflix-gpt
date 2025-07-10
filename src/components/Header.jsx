@@ -1,13 +1,11 @@
 import React, { useEffect } from "react";
-import netflixLogo from "../assets/images/Netflix_Logo_PMS.png";
 import { signOut } from "firebase/auth";
-
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../utils/firebase";
-
 import { addUser, removeUser } from "../utils/userSlice.js";
+import { LOGO } from "../utils/constants.js";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -16,58 +14,47 @@ const Header = () => {
 
   const handleSignOut = () => {
     signOut(auth)
-      .then(() => {
-        navigate("/");
-      })
-      .catch((error) => {
-        navigate("/error");
-      });
+      .then(() => navigate("/"))
+      .catch(() => navigate("/error"));
   };
 
-  //Firebase api for dispatching action in redux appStore
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        // User is signed in
         const { uid, email, displayName, photoURL } = user;
         dispatch(addUser({ uid, email, displayName, photoURL }));
         navigate("/browse");
       } else {
-        // User is signed out
         dispatch(removeUser());
         navigate("/");
       }
     });
+    return () => unsubscribe();
   }, []);
 
   return (
-    <header className="flex justify-between items-center px-8 py-4 absolute w-full z-10">
-      <div className="flex items-center gap-2">
+    <header className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex flex-col md:flex-row justify-between">
+      {/* Logo */}
+      <div className="flex items-center">
         <img
-          src={netflixLogo}
+          src={LOGO}
           alt="Netflix Logo"
-          className="w-35 object-contain"
+          className="w-[140px] object-contain"
         />
       </div>
-      <div className="flex gap-4">
-        {/*<select className="bg-transparent text-white border px-3 py-1 rounded">*/}
-        {/*  <option value="en" className="text-black">*/}
-        {/*    English*/}
-        {/*  </option>*/}
-        {/*  <option value="hi" className="text-black">*/}
-        {/*    Hindi*/}
-        {/*  </option>*/}
-        {/*</select>*/}
+
+      {/* User Controls */}
+      <div className="flex items-center gap-4">
         {user && (
-          <div className="flex gap-3">
+          <div className="flex items-center gap-3">
             <img
-              alt="userIcon"
-              className="w-10 h-10 object-contain rounded"
+              alt="user profile"
+              className="w-10 h-10 object-cover rounded"
               src={user?.photoURL}
             />
             <button
-              className="bg-red-600 text-white font-medium px-2 py-1 rounded cursor-pointer"
               onClick={handleSignOut}
+              className="bg-red-600 text-white font-medium px-3 py-1 rounded hover:bg-red-700 transition"
             >
               Sign Out
             </button>
