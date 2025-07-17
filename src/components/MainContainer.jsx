@@ -4,21 +4,27 @@ import VideoTitle from "./VideoTitle.jsx";
 import VideoBackground from "./VideoBackground.jsx";
 
 const MainContainer = () => {
-  // ✅ Get movie data from Redux store
   const movies = useSelector((store) => store.movies.nowPlayingMovies);
 
-  if (!movies) return;
+  if (!movies || movies.length === 0) return null;
 
-  const mainMovie = movies[0];
-  //console.log("Main Movie", mainMovie);
+  const mainMovie = movies[2];
 
   return (
-    <div>
-      <VideoTitle
-        title={mainMovie?.original_title}
-        overview={mainMovie?.overview}
-      />
+    <div className="relative h-[100vh] w-full">
+      {/* Background video */}
       <VideoBackground movieId={mainMovie?.id} />
+
+      {/* Gradient overlay for smooth blending */}
+      <div className="absolute bottom-0 w-full h-48 bg-gradient-to-t from-black to-transparent z-10" />
+
+      {/* Title and buttons */}
+      <div className="absolute top-0 w-full z-20">
+        <VideoTitle
+          title={mainMovie?.original_title}
+          overview={mainMovie?.overview}
+        />
+      </div>
     </div>
   );
 };
