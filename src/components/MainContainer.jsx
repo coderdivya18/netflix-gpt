@@ -6,19 +6,19 @@ import VideoBackground from "./VideoBackground.jsx";
 const MainContainer = () => {
   const movies = useSelector((store) => store.movies.nowPlayingMovies);
 
-  if (!movies || movies.length === 0) return null;
+  if (!movies || movies.length < 3) return null; // fallback for insufficient data
 
   const mainMovie = movies[2];
 
   return (
-    <div className="relative h-[100vh] w-full">
-      {/* Background video */}
+    <div className="relative min-h-screen w-full">
+      {/* Background Video */}
       <VideoBackground movieId={mainMovie?.id} />
 
-      {/* Gradient overlay for smooth blending */}
+      {/* Dark Gradient Overlay (bottom) */}
       <div className="absolute bottom-0 w-full h-48 bg-gradient-to-t from-black to-transparent z-10" />
 
-      {/* Title and buttons */}
+      {/* Movie Title + CTA */}
       <div className="absolute top-0 w-full z-20">
         <VideoTitle
           title={mainMovie?.original_title}

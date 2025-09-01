@@ -47,21 +47,21 @@ const Header = () => {
 
   return (
     <header className="absolute w-full px-4 md:px-8 py-4 bg-gradient-to-b from-black/90 to-transparent z-30">
-      <div className="flex flex-col md:flex-row justify-between items-center w-full">
+      <div className="max-w-screen-xl mx-auto flex flex-col md:flex-row justify-between items-center gap-y-4">
         {/* Logo */}
         <img
           src={LOGO}
           alt="Netflix Logo"
-          className="w-[100px] md:w-[140px] object-contain"
+          className="w-28 md:w-36 object-contain"
         />
 
         {/* User Controls */}
         {user && (
-          <div className="flex items-center gap-4 mt-4 md:mt-0">
-            {/* Language Selector for GPT Search*/}
+          <div className="flex flex-wrap justify-center md:justify-end items-center gap-3">
+            {/* Language Selector */}
             {showGptSearchView && (
               <select
-                className="bg-black/50 text-white border border-white px-2 py-1 rounded cursor-pointer hover:bg-black"
+                className="bg-black/50 text-white border border-white px-2 py-1 rounded cursor-pointer hover:bg-black transition"
                 onChange={handleLanguageSelection}
                 defaultValue="en"
               >
@@ -73,17 +73,22 @@ const Header = () => {
               </select>
             )}
 
+            {/* GPT Toggle Button */}
             <button
-              className="text-white border border-white px-4 py-1 rounded hover:bg-white hover:text-black transition cursor-pointer"
+              className="text-white border border-white px-3 py-1 rounded hover:bg-white hover:text-black transition"
               onClick={handleGPTSearchClick}
             >
-              {showGptSearchView ? "Home" : " GPT Search"}
+              {showGptSearchView ? "Home" : "GPT Search"}
             </button>
+
+            {/* User Avatar */}
             <img
               alt="user profile"
-              className="w-10 h-10 object-cover rounded-full"
+              className="w-9 h-9 object-cover rounded-full"
               src={user?.photoURL}
             />
+
+            {/* Sign Out Button */}
             <button
               onClick={handleSignOut}
               className="bg-red-600 text-white font-medium px-4 py-1 rounded hover:bg-red-700 transition"

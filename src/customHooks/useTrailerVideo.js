@@ -5,6 +5,7 @@ import { addTrailerVideo } from "../utils/moviesSlice.js";
 
 const useTrailerVideo = (movieId) => {
   const dispatch = useDispatch();
+
   const fetchTrailerVideo = async () => {
     try {
       const res = await fetch(
